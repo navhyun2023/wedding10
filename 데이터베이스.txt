@@ -1,0 +1,44 @@
+moonseonjong@naver.com
+
+<?
+moonjong2.dothome.co.kr/wd2/
+
+
+// 데이터베이스 접근 권한설정
+// 데이터베이스서버이름  localhost
+// 사용자이름  아이디이름사용
+// 사용자비번  anstjswhd0105#
+// 데이터베이스이름  가입시  아이디이름사용
+// moonjong2.dothome.co.kr  홈페이지
+// moonjong2.dothome.co.kr/myadmin  데이터베이스와 테이블
+
+
+$db_server      = 'localhost';
+$db_user_name   = 'moonjong2';
+$db_user_pw     = 'anstjswhd0105#';
+$db_name        = 'moonjong2';
+// 데이터베이스 접속(컨넥션 connection)
+$conn = mysqli_connect($db_server, $db_user_name, $db_user_pw , $db_name);
+mysqli_set_charset($conn, "utf8"); // 데이터베이스 인코딩
+
+
+
+// 홈페이지 폼전송데이터
+$name = $_POST['name']; // 문자열
+$email = $_POST['email']; // 문자열
+$guests = $_POST['guests']; //숫자
+$event = $_POST['event']; // 문지얄
+
+// moonjong2.dothome.co.kr/wd/form_mail.php
+// 데이터베이스 테이블에 저장하기(insert into)
+// 1. 입력 테스트 SQL 
+// INSERT INTO 테이블이름 (필드1,필드2,...) VALUES ('데이터1','데이터1',....);
+$sql = "INSERT INTO wedding_table(이름, 이메일, 게스트, 이벤트) 
+        VALUES 
+        ('차분희', 'chaboonhee@naver.com', 2, 'Cocktail Party'),
+        ('이성계', 'leesungkea@naver.com', 5, 'Cocktail Party'),
+        ('김영식', 'kimyoungshik@naver.com', 1, 'Cocktail Party'),
+        ('손영재', 'yungjeag@naver.com', 3, 'Wedding Ceremony'),
+        ('김길동', 'shongildong@naver.com', 4, 'Wedding Party')";
+mysqli_query($conn, $sql); // 저장 실행
+?>

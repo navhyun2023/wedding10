@@ -1,0 +1,64 @@
+1. git init
+
+2. git config user.name 'navhyun2023'
+   git config user.email 'navkhm@gmail.com'
+
+   3.
+   git remote add origin https://github.com/navhyun2023/wedding.git
+
+   origin  https://github.com/navhyun2023/wedding.git (fetch)
+origin  https://github.com/navhyun2023/wedding.git (push)
+
+4. staging
+git add .
+
+5. commit
+git commit -m 'wedding_homepage_send'
+
+6. push
+git push origin master
+
+7. F5-새로고침
+
+8. settings
+
+9. pages
+
+10. Build and deployment => branch=> master=> save
+
+//////////////////////////////////
+협업하기
+/////////////////////////////////
+1. 복제하기 clone
+https://github.com/navhyun2023/wedding.git
+
+git clone https://github.com/navhyun2023/wedding.git
+
+2. 확인하기 ls -la
+
+3. 폴더 위치변경
+cd wedding
+
+4. ls -la
+5. 웹페이지 수정 추가 작업
+6. 스테이징하기
+git add .
+7. 커밋하기
+git commit -m '2023-07-13 21:11 navhyun수정함'
+8. 환경설정
+ git config user.email 'navkhm@gmail.com'
+ git config user.email 'navkhm@gmail.com'
+
+ 9. brench 생성하기
+ git checkout -b 브렌치이름
+
+ $ git checkout -b wed0713
+Switched to a new branch 'wed0713'
+
+11. push
+git push origin wed0713
+
+https://github.com/navhyun2023/wedding/tree/wed0713
+
+배포된 주소
+https://navhyun2023.github.io/wedding/

@@ -1,0 +1,1217 @@
+@import url('../css/fonts.css');
+@import url('../css/reset.css');
+
+$black: #2e443f;
+
+// 믹스인(함수) => @인클루드 @include
+@mixin mixinSec2LR() {
+    width:50%;
+    display: flex;
+    @media all and (max-width:1170px) {
+        width:100%;
+        margin: 0 auto;
+        //flex-flow: row nowrap;  // 줄바꿈 없다.
+        flex-flow: row wrap;  // 줄바꿈 있다.
+    }
+
+    .col1{
+        width:50%;
+        @media all and (max-width:1170px) {
+            width:30%;
+        }
+        @media all and (max-width:760px) {
+            width:50%;
+        }
+        @media all and (max-width:600px) {
+            width: 100%;
+        } 
+        .col-gap {
+            margin: 0 15px;
+            @media all and (max-width:600px) {
+                margin: 30px 15px;
+            } 
+            .img-box {
+                width:100%;
+                img{
+                    width:100%;
+                    max-width: 270px;
+                    outline: 4px solid rgba(255,255,255, 0.4);
+                    outline-offset: -16px;
+                    @media all and (max-width:760px) {
+                        max-width: 100%;
+                    }
+                }
+            }
+            .icon-box {
+                width:100%;
+                text-align: center;
+                padding: 25px 0 0 0;
+                a {                                            
+                   margin: 0 13px 0 13px;
+                    i {
+                        color:#444;
+                        font-size: 16px;
+                    }
+                }
+            }
+        }
+    }
+    .col2{
+        width:50%;
+        @media all and (max-width:1170px) {
+            width:70%;
+        }
+        @media all and (max-width:760px) {
+            width: 50%;
+        } 
+        @media all and (max-width:600px) {
+            width: 100%;
+        } 
+        .col-gap {
+            margin: 0 15px;
+            @media all and (max-width:600px) {
+                margin: 30px 15px;
+            } 
+            .text-box {
+                width:88%;
+                @media all and (max-width:1170px) {
+                    padding: 0 0 0 20px; 
+                }   
+                @media all and (max-width:760px) {
+                    padding: 0 0 0 20px; 
+                }           
+                strong{
+                    font-size: 50px;color:#85d4c0;
+                    i {
+                        transform: translateY(-10px);
+                    }
+                }
+                h3{font-size: 18px;color:#85d4c0;line-height: 150%;}
+                h4{color:#626262;font-size: 13px;padding:30px  0 20px 0;}
+                p{color:#626262;font-size: 13px;line-height: 150%;}
+            }
+        }
+    }
+}
+
+@mixin mixinTitle() {
+    width:100%;
+    text-align: center;
+    padding: 0 0 80px 0;
+    @media all and (max-width:1170px) {
+        padding: 0 0 6.837606838vw  0;
+    }
+    h2 {
+        font-size: 24px;
+        color:#e15276;
+        font-weight: 600;
+        &::before {
+            content:"";
+            display: inline-block;
+            width:40px;
+            height: 1px;
+            background: #93e4cf;
+            transform: translate( -20px, -6.5px);                                
+        }
+        &::after {
+            content:"";
+            display: inline-block;
+            width:40px;
+            height: 1px;
+            background: #93e4cf;
+            transform: translate( 20px, -6.5px); 
+        }
+        @media all and (max-width:600px){
+            font-size: 20px;
+            &::before {              
+                width:30px;                              
+            }
+            &::after {           
+                width:30px;
+            }
+        }
+    }
+}
+
+@mixin mixinBg(){
+    z-index: 1;                
+    width:100%; 
+    height: 100%; 
+    position: relative;
+    &::before{ //가상요소
+        content:'가상요소 &::before';   
+        display: block;
+        width: 100%;
+        height: 100%;
+        background: #252525;
+        position: absolute;
+        z-index: 2;
+        left:0;
+        top:0;
+        opacity: 0.7;
+    }  
+}
+@mixin sectionPadding130(){
+    @media all and (max-width: 1170px) {
+        padding: 11.11111vw 0;
+    }
+}
+
+#wrapper {
+    width:100%;
+    overflow: hidden;
+    #header{
+        width: 100%;
+        height: 86px;
+        background: #93e4cf;
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 3;
+        .container {
+            width: 100%;
+            max-width:1170px;
+            height: 100%;
+            margin: 0 auto;
+            .gap {
+                width: auto;
+                margin: 0 15px; // 너비 11140px + 30
+                height: 100%;
+                display: flex;
+                position:relative;
+                .left {
+                    width: 435.5px;
+                    height: 100%;
+                    display: flex;
+                    align-items: center;        // 수직 가운데 정렬
+                    justify-content: flex-end;  // 수평 우측 정렬
+                    @media all and (max-width:950px) {
+                        display: none;
+                    }
+
+                    span {
+                        padding:0  20px 0 0;
+                        display: flex;
+                        width:100%;
+                        justify-content: flex-end;
+                    a {
+                        color: $black;
+                        font-size: 14px;
+                        font-weight: 600;
+                        margin: 0 0 0 5%;
+                        transition: all 0.3s;
+                        @media all and (max-width:1170px) {
+                            font-size: 12px; 
+                        }
+                    }
+                    }
+                }
+                .center {
+                    width: 269px;
+                    height: 100%;
+                    margin: 0  auto;
+                    @media all and (max-width:950px) {
+                        display: none;
+                    }
+                    a {
+                        img {
+                            width: 269px;
+                        }
+                    }
+                }
+                .right {
+                    width: 435.5px;
+                    height: 100%;
+                    text-align: left;
+                    display: flex;
+                    align-items: center;        // 수직 가운데 정렬
+                    justify-content:flex-start;  // 수평 우측 정렬
+                    @media all and (max-width:950px) {
+                        display: none;
+                    }
+                    span {
+                        padding:0 0 0 20px;
+                        display: flex;
+                        width:100%;
+                    a{
+                        color: $black;
+                        font-size: 14px;
+                        font-weight: 600;
+                        margin: 0 5% 0 0;
+                        transition: all 0.3s;
+                        @media all and (max-width:1170px) {
+                            font-size: 12px; 
+                        }
+                    }
+                }
+            }
+                .mobile{
+                    display: none;
+                    @media all and (max-width:950px) {
+                        display: block;
+                    }
+                    &.logo{
+                        width: 269px;
+                        height: 86px;                        
+                        a {
+                            img {
+                                height: 86px;
+                            }
+                        }
+                    }
+                    &.bar{
+                        position: absolute;
+                        right:20px;
+                        top: 50%;
+                        margin-top:-7px;
+                        width: 22px;
+                        height: 14px;
+                        a {
+                            position: relative;
+                            display: block;
+                            height: 100%;
+                            width: 100%;
+                            i {                                
+                                position: absolute;
+                                width:100%;
+                                height: 2px;
+                                background:#333;
+                                &:nth-child(1){
+                                    top:0;                                   
+                                    left:0;
+                                }
+                                &:nth-child(2){
+                                    top:50%;
+                                    margin-top: -1px;
+                                }
+                                &:nth-child(3){
+                                    bottom:0; 
+                                    background-color: #333;                                   
+                                }
+                            }
+                        }
+                    }
+                }
+
+                .mobile-menu{
+                    position: fixed;
+                    top:86px;
+                    left:0;
+                    width:100%;
+                    background: rgba(0,0,0, 1);
+                    display: none;
+                   
+                    ul {
+                        width:100%;
+                        padding:20px 0;
+                        li {
+                            width:100%;
+                            padding: 10px 20px;
+                            a {
+                                line-height: 20px;
+                                color:#fff;
+                                font-weight: 500;
+                                &:focus {
+                                    color:#c00;
+                                }                                
+                                &:hover {
+                                    color:#c00;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+
+    #main{
+        position: relative;
+        z-index: 2;
+        width:100%;
+        #section1 {
+            width: 100%;
+            height: 100vh;
+            position: relative;
+            .slide-container {
+              
+                @include mixinBg();
+                           
+                .slide-view {    
+                    z-index: 1;                
+                    position: relative;
+                    width:100%;   
+                    .slide-wrap {
+                        width:100%;   
+                        position: relative;
+                        .slide {
+                            width: 100vw;   
+                            height: 100vh;
+                            position: absolute;
+                            left: 0;
+                            top: 0;
+                            &.slide1 {
+                                background: url(../img/wedding-img1.jpg) no-repeat 50% 50%;
+                                background-size: cover;
+                                z-index: 3;
+                                // animation: ani1 12s both;
+                            }
+                            &.slide2 {
+                                background: url(../img/wedding-img2.jpg) no-repeat 50% 50%;
+                                background-size: cover;
+                                z-index: 2;
+                                // animation: ani2 12s both;
+                            }
+                            &.slide3 {
+                                background: url(../img/wedding-img3.jpg) no-repeat 50% 50%;
+                                background-size: cover;
+                                z-index: 1;
+                                // animation: ani3 12s both;
+                            }
+                        }
+                    }
+                }
+
+                .box {
+                    position: absolute;
+                    top:50%;
+                    left:50%;
+                    z-index: 2;
+                    width:307px;
+                    margin: -146px 0 0 -153.5px;
+                    text-align: center;
+                    img {width:100%;}
+                    hr {
+                        margin: 40px 0;
+                        width:100%;
+                        height: 4px;
+                        border:0;
+                        border-top:1px solid #85d4c0;
+                        border-bottom:1px solid #85d4c0;
+                        opacity: 0.7;
+                    }
+                    h3 {
+                        font-size: 18px;
+                        font-weight: 600;
+                        color:#fff;
+                        padding: 0 0 10px 0;
+                    }
+                    h2 {font-size: 24px;font-weight: 600;color:#85d4c0;}
+                }
+            }
+
+        }
+
+       
+        #section2 {
+            width:100%;
+            padding: 130px 0;           
+            background: #fff;
+            @include sectionPadding130();
+            .container {
+                width:100%;
+                max-width:1170px;
+                margin: 0 auto;
+                .gap{
+                    width:100%;
+                    .title {
+                       @include mixinTitle();
+                    }
+                    .content {
+                        width:100%;
+                        display: flex;
+                        flex-wrap: wrap;
+                        .left {
+                           @include mixinSec2LR();
+                        }
+                        .right {
+                            @include mixinSec2LR();
+                            @media all and (max-width:1170px) {
+                                padding: 70px 0 0 0; 
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        #section3 {
+            width:100%;
+            padding: 130px 0;
+            height: 346px;  
+            background: url(../img/wedding-img2.jpg) no-repeat 50% 50% fixed;
+            background-size: cover;
+            @include sectionPadding130();
+            @include mixinBg();
+
+            .container {
+                z-index: 2;
+                position: relative;
+                height: 100%;
+                .gap {
+                    height: 100%;
+                    .title {
+                        height: 100%;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        h2 {
+                            padding: 0 20px; 
+                            text-align: center;                        
+                            font-size: 24px;
+                            font-weight: 600;
+                            color:#85d4c0;
+                        }                       
+                    }
+                }
+            }
+        }
+        #section4 {
+            width:100%;
+            padding: 130px 0;
+            background: #fff;  
+            @include sectionPadding130();
+
+            .container {
+                width:100%;
+                max-width:1170px;
+                margin: 0 auto;
+                .gap{
+                    width:100%;
+                    .title {
+                       @include mixinTitle();
+                    }
+                    .content {
+                        width:100%;
+                        display: flex;
+                        flex-flow: row wrap;
+                        > div {
+                            width: 33.333%;
+                            height: 318.625px;                          
+                            display: flex;
+                            @media all and (max-width:1024px) {
+                                width: 50%;
+                                margin: 15px 0;
+                            }
+                            @media all and (max-width:600px) {
+                                width: 100%;                                
+                            }
+                            .gap{
+                                height: 100%;
+                                border: 5px solid #e4e4e4;
+                                margin: 0 15px;
+                                display: flex;
+                                align-items: center;
+                                justify-content: center;
+                                @media all and (max-width:1024px) {
+                                    margin: 0 15px;
+                                }
+
+                            ul {
+                                width:68.571%;
+                                li {
+                                    text-align: center;
+                                    i {font-size: 60px;color:#85d4c0;}
+                                    h4 {   
+                                        padding: 20px 0 0 0;
+                                        font-size: 16px;
+                                        color: #626262;                                    
+                                        font-weight: 600;
+                                    }
+                                    hr {
+                                        border:0;
+                                        background: #ddd;
+                                        width: 100%;
+                                        height: 1px;
+                                        margin: 25px 0;
+                                    }
+                                    h5, h6 {
+                                        font-size: 13px;
+                                        color: #929292;
+                                        line-height: 160%;
+                                    }
+                                }
+                            }
+
+                        }
+                    }
+                }
+            }          
+        }
+    }
+        #section5 {            
+            width:100%;
+            border-top: 1px solid #ddd;
+            padding: 130px 0;           
+            background: #fff;  
+            @include sectionPadding130();
+
+            .container {
+                width: 100%;
+                max-width:1170px; // 1170+11=1181
+                margin: 0 auto;
+                .gap{
+                    width:100%;
+                    overflow: hidden;
+                    .title {
+                       @include mixinTitle();
+                    }
+                    .content {
+                        width:100%;
+                        overflow: hidden;                       
+                        ul {
+                            transform: translateX(-11px);
+                            width:1181px;
+                            display: flex;
+                            flex-flow: row wrap;
+                            @media all and (max-width:1170px) {
+                                width:100%;
+                                transform: translateX(-5.5px);
+                            }
+                            li {
+                                width:25%;                                
+                                padding: 0 0 11px 11px; 
+                                @media all and (max-width:1170px)  {
+                                    width:33.33333%;   
+                                }
+                                @media all and (max-width:860px)  {
+                                    width:50%;   
+                                }
+                                @media all and (max-width:660px)  {
+                                    width:100%;   
+                                }
+                                div {
+                                    width:100%;
+                                    overflow: hidden;
+                                    img {
+                                        width:100%;
+                                        transition: all .3s;
+                                        &:hover{
+                                            transform: scale(1.2);
+                                            opacity: 0.3;
+                                            cursor: url(../img/icon-zoom.png), auto;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }      
+        }
+        #section6 {
+            width:100%;
+            padding: 130px 0;           
+            background: url(../img/wedding-img16.jpg) no-repeat 50% 50% fixed;
+            background-size: cover; 
+            @include sectionPadding130();
+
+            @include mixinBg();
+            .container {
+                width:100%;
+                max-width: 1170px;
+                margin:0  auto;
+                .gap {
+                    width:100%;
+                    .content {  
+                        width:100%;
+                        display: flex;
+                        flex-flow: row wrap;
+                        .left{
+                            width: 50%;
+                            position: relative;
+                            z-index: 2;
+                            padding: 0 15px;
+                            @media all and (max-width: 900px) {
+                                width:100%;                                
+                                margin: 15px 0;
+                            }
+                            .col-gap{
+                                width:100%;
+                                height:500px;
+                                background: url(../img/wedding-img17.jpg) no-repeat 50% 50%;
+                                background-size: cover;    
+                                outline: 5px solid rgba(255,255,255, 0.3);
+                                outline-offset: -20px;
+                                display: flex;
+                                p {
+                                    margin:auto;
+                                    color:#fff;
+                                    font-weight: 600;
+                                    text-align: center;
+                                    font-size: 28px;
+                                    line-height: 120%;
+                                    @media  all and (max-width: 500px) {
+                                        font-size: 20px;
+                                    }
+                                }
+                            }
+                        }
+                        .right{
+                            width: 50%;
+                            position: relative;
+                            z-index: 2;
+                            padding: 0 15px;
+                            @media all and (max-width: 900px) {
+                                width:100%;  
+                                margin: 15px 0;                              
+                            }
+                            .col-gap{                                    
+                                width:100%;
+                                height:500px;
+                                background: #93e4cf;
+                                outline: 5px solid rgba(255,255,255, 0.3);
+                                outline-offset: -20px;
+                                display: flex;
+                                align-items: center;
+                                justify-content: center;
+                                form {
+                                    width: 100%;                              
+                                ul {
+                                    width:100%;   
+                                    padding: 0 12.613%;                                 
+                                    li {
+                                        width:100%;
+                                        padding:10px 0;
+                                        text-align: center;
+                                        h2 {padding: 0 0 40px 0;text-align: center;
+                                            font-size: 24px;font-weight: 600;
+                                            @media  all and (max-width: 500px) {
+                                                font-size: 20px;
+                                            }
+                                        }
+                                        input {
+                                                width:100%;height:47px;border:0;
+                                                background: #fff;padding:0 15px;
+                                                transition: all 0.3s;
+                                                outline-offset: -1px;
+                                                border-radius: 3px;
+                                                &:focus{
+                                                    outline: 1px solid #777;
+                                                }
+                                                &::placeholder {
+                                                    color:#bbb;
+                                                }
+                                        }
+                                        select {
+                                            border-radius: 3px;
+                                            color:#999;
+                                            width:50%;height:47px;padding:0 15px;
+                                            transition: all 0.3s;
+                                            outline-offset: -1px;
+                                            appearance: none;
+                                            background: #fff url(../img/select-arrow.png) no-repeat calc(100% - 10px) 50%;
+                                            background-size: 13px;
+                                            &:focus{
+                                                outline: 1px solid #777;
+                                            }
+                                        }
+                                        &:nth-child(4){
+                                            display: flex;
+                                            justify-content: space-between;
+                                            select {
+                                                border:0;
+                                            }                                            
+                                        }
+
+                                        button {
+                                            height:52px;
+                                            background:#000;
+                                            color:#fff;
+                                            font-size: 13px;
+                                            font-weight: 600;
+                                            text-transform: uppercase;
+                                            padding: 0 20px;
+                                            border-radius: 3px;
+                                            border:3px solid #000;
+                                            transition: all 0.3s;
+                                            &:hover {
+                                                background-color: #fff;
+                                                color:#000;
+                                                cursor: pointer;
+                                            }
+                                        }
+                                    }
+                                }
+                            }                          
+                        }
+                    }
+                }
+            }
+        }
+    }
+        #section7 {
+            width:100%;
+            padding: 130px 0;
+            background: #fff;  
+            border-top: 1px solid #ddd; 
+            @include sectionPadding130();           
+            .container {
+                width:100%;
+                max-width:1170px;
+                margin: 0 auto;
+                .gap{
+                    width:100%;
+                    .title {
+                       @include mixinTitle();
+                    }
+                    .content {
+                        width:100%;   
+                        padding: 0 15px;                     
+                        .row1 {
+                            padding: 0 0 80px 0;
+                            width: 100%;
+                            max-width: 456px;
+                            margin:0 auto;
+                            font-size: 13px;
+                            color:#626262;
+                            text-align: center;
+                            line-height: 200%;
+                            letter-spacing: -0.7px;
+                        }
+                        .row2 {
+                            margin:0 auto;
+                            width: 90%;
+                            display: flex;
+                            flex-flow: row wrap;
+                            justify-content: space-evenly;
+                            a {                                
+                                img {
+                                    width:auto;
+                                }
+                                @media  all and (max-width:760px) {
+                                    width: 100%;
+                                    display: block;
+                                    margin: 20px 0; 
+                                    text-align: center;
+                                }
+                            }
+                        }
+                    }
+                }
+            }  
+        }
+        #section8 {
+            width:100%;
+            border-top: 1px solid #ddd;
+            padding: 130px 0;
+            background: #fff;  
+            user-select: none;
+            @include sectionPadding130();
+            .container {
+                width:100%;
+                .gap{
+                    width:100%;
+                    .title {
+                       @include mixinTitle();
+                    }
+                    .content {
+                        width:100%;
+                        .slide-container {
+                            width:100%;
+                            .slide-view {
+                                width:100%;                                
+                                overflow: hidden;
+                                padding: 0 0 0 15px;
+                                .slide-wrap {                                    
+                                    position: relative;
+                                    width:25%*5;
+                                    left:0;
+                                    display: flex;  
+                                    @media all and (max-width:1200px) {
+                                        width:33.333% * 5;
+                                    }                                  
+                                    @media all and (max-width:800px) {
+                                        width:50% * 5;
+                                    }                                  
+                                    @media all and (max-width:700px) {
+                                        width:100% * 5;
+                                    }                                  
+                                    .slide {
+                                        width:25%;
+                                        @media all and (max-width:1200px) {
+                                            width:33.333%;
+                                        }  
+                                        @media all and (max-width:800px) {
+                                            width:50%;
+                                        }  
+                                        @media all and (max-width:700px) {
+                                            width:100%;
+                                        }  
+                                        .col-gap {
+                                            margin:0 15px 0 0;                                            
+                                            .img-box {
+                                                overflow: hidden;
+                                                width:100%;
+                                                position: relative;
+                                                cursor: url(../img/icon-move.png), auto;
+                                                &::before{
+                                                    content:'';
+                                                    width: 100%;
+                                                    height: 100%;
+                                                    top: 0;
+                                                    left: 0;
+                                                    z-index: 2;
+                                                    position: absolute;
+                                                    background: rgba(30,30,30, 0);
+                                                    transition: all 0.3s;
+                                                }
+                                                img {
+                                                    position: relative;
+                                                    width:100%;
+                                                    z-index: 1;
+                                                    transition: all 0.3s;
+                                                }
+                                                span {
+                                                    position: absolute;
+                                                    right:0;
+                                                    bottom:0;
+                                                    padding:14px 26px;
+                                                    color:#626262;
+                                                    font-size: 13px;
+                                                    z-index: 3;
+                                                    background: #fff;
+                                                    font-weight: 600;
+                                                }
+                                            }
+                                            .txt-box {
+                                                 width:100%;
+                                                 padding: 20px;
+                                                 display: flex;
+                                                 cursor: url(../img/icon-move.png), auto;
+                                                .left {
+                                                    width: 70px;
+                                                    h3 {
+                                                        font-size: 35px;
+                                                        font-weight: 700;
+                                                        color:#e15276;
+                                                    }
+                                                }
+                                                .right {
+                                                    color:#626262;
+                                                    padding:3px 0 0 15px;
+                                                    h4{
+                                                        font-size: 15px;
+                                                        font-weight: 700;
+                                                    }
+                                                    p{
+                                                        font-size: 14px;
+                                                        font-weight: 400;
+                                                        padding:15px 0 25px 0;
+                                                    }
+                                                    i{
+                                                        display: block;    
+                                                        width: 30px;
+                                                        height: 4px;
+                                                        background: #85d4c0;
+                                                    }
+                                                }
+                                            }
+                                            &:hover {
+                                                .img-box {
+                                                    
+                                                    &::before{
+                                                        background: rgba(30,30,30, 0.5);   
+                                                    }
+                                                    img {
+                                                        transform: scale(1.15);
+                                                       
+                                                        cursor: default;
+                                                    }
+                                                }
+                                            }
+                                        }   
+                                    }
+                                }
+                            }
+                        }
+
+                    }
+                }
+            }      
+        }
+        #section9 {
+            width:100%;
+            border-top: 1px solid #ddd;
+            padding: 130px 0;
+            background: #fff; 
+            @include sectionPadding130(); 
+            .container {
+                width:100%;
+                max-width:1170px;
+                margin: 0 auto;
+                .gap{
+                    width:100%;
+                    .title {
+                       @include mixinTitle();
+                    }
+                    .content {
+                        width:100%;
+                        > ul {
+                            width:100%;
+                            display: flex;
+                            flex-flow: row wrap;//줄바꿈하려면 반드시해야함
+                            
+                            > li {
+                                width:33.333%;
+                           
+                                @media all and (max-width:1024px) {
+                                    width: 50%;
+                                   
+                                }
+                                @media all and (max-width:780px) {
+                                    width: 100%;                                
+                                }
+                 
+                                
+                                .col-gap {
+                                    margin:0 15px;
+                                    @media all and (max-width:1024px) {
+                                        margin: 15px;
+                                    }
+                                    .img-box {
+                                        width:100%;
+                                        img {
+                                            width:100%;
+                                            transition: all 1s;
+                                            &:hover{
+                                                filter: grayscale(1);
+                                            }
+                                        }
+                                    }
+                                    .txt-box {
+                                        padding: 30px 0 0 0;
+                                        width:100%;
+                                        ul {
+                                            width:100%;
+                                            li {
+                                                width:100%;
+                                                &:nth-child(1){
+                                                    a {
+                                                      display: inline-flex;
+                                                      padding: 5px 10px;  
+                                                      background: #000;
+                                                      color:#fff;
+                                                      font-family: 'Montserrat';
+                                                      font-weight: 600;
+                                                      font-size: 10px;
+                                                      transition: all 0.6s;
+                                                      &:hover {
+                                                        opacity: 0.3;
+                                                      }
+                                                    }
+                                                }
+                                                &:nth-child(2){
+                                                    padding: 10px 0 0 0;
+                                                    h3 {
+                                                        a {
+                                                            font-weight: 600;
+                                                            font-size: 15px;
+                                                            color:#333;  
+                                                            font-family: 'Montserrat'; 
+                                                            line-height: 140%;
+                                                        }
+                                                    }
+                                                }
+                                                &:nth-child(3){
+                                                    padding: 20px 0 0 0;
+                                                    p {
+                                                        font-weight: 400;
+                                                        font-size: 13px;
+                                                        color:#666;  
+                                                        font-family: 'Roboto'; 
+                                                        line-height: 180%;
+                                                    }
+                                                }
+                                                &:nth-child(4){
+                                                    padding:30px 0;
+                                                    hr {
+                                                        border:0;
+                                                        border-bottom:1px solid #ddd;
+                                                    }
+                                                }
+                                                &:nth-child(5){
+                                                    font-size: 12px;
+                                                    a {
+                                                        color:#999;
+                                                    }
+                                                    span {
+                                                        color:#999;
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }  
+        }
+        #section10 {
+            width:100%;
+            border-top: 1px solid #ddd;
+            padding: 130px 0;           
+            background: #fff;  
+            @include sectionPadding130(); 
+            .container {
+                width:100%;
+                max-width:1170px;
+                margin: 0 auto;
+                .gap{
+                    width:100%;
+                    margin: 0 15px;
+                    .title {
+                       @include mixinTitle();
+                    }
+                    .content {
+                        width:100%;
+                        p {
+                            color:#626262;
+                            font-size: 13px;
+                            width: 100%;
+                            max-width:456px;
+                            margin:0 auto;
+                            line-height: 180%;
+                            text-align: center;
+                            font-weight: 500;
+                            letter-spacing: -0.7px;
+                            padding: 0 15px;
+                        }
+                    }
+                }
+            }  
+        }
+        #section11 {
+            width:100%;
+            height: 420px;
+            background: #fff; 
+            iframe {
+                width: 100%;
+                height: 100%;
+                border: 0;
+            } 
+        }
+    }
+    #footer{
+        border-top: 1px solid #ccc;
+        padding: 60px 0 30px 0;
+        position: relative;
+        z-index: 2;
+        width:100%;
+        background: #fff;
+        .container {
+            text-align: center;
+            width: 100%;
+            max-width:1170px;
+            margin: 0 auto;
+            padding:0 15px;
+            .row1 {
+                padding: 0 0 60px  0;
+                a {
+                    margin:0 25px;
+                    font-size: 22px;
+                    color:#333;
+                    @media all and (max-width:500px){
+                        margin: 0 15px;
+                        font-size: 20px;
+                    }
+                }
+            }
+            .row2 {
+                border-top: 1px solid #ddd;
+                padding: 30px 0 0 0;
+                p {
+                    font-size: 13px;
+                    color:#666;
+                } 
+            }
+        }
+     }
+   
+    .modal {        
+        z-index: 4;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: #fff;
+        cursor: url(../img/icon-zoom-out.png), auto;
+        display: none;
+        align-items: center;        
+        justify-content: center;
+        .container {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            .content {
+                width:800px;
+                margin:auto;
+                .img-box {
+                    width:100%;
+                    cursor: pointer;
+                    img {width:100%;}
+                }
+                .modal-prev-btn {
+                   font-size: 60px;
+                   color:#000; 
+                   position: absolute;
+                   top:50%;
+                   left: 0;
+                   font-weight: 600;
+                   margin-top:-30px;
+                }
+                .modal-next-btn {
+                    font-size: 60px;
+                    font-weight: 600;
+                    color:#000; 
+                    position: absolute;
+                    top:50%;
+                    right: 0;                    
+                    font-weight: 600;
+                    margin-top:-30px;
+                }
+                .modal-close-btn {
+                    position: absolute;
+                    top:0;
+                    right:0;
+                    width:30px;
+                    height:30px;
+                    background: #000;
+                    color:#fff;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    font-size: 25px;
+                }
+            }
+
+        }
+    }
+    .go-top {
+        z-index: 3;
+        position: fixed;
+        bottom: 50px;
+        right: 50px;
+        width: 20px;
+        height: 20px;
+        background: #000;
+        a {
+            display: flex;
+            color:#fff;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            height: 100%;
+            padding:5px;
+            i {
+                font-size: 14px;
+                color:#fff;
+            }
+        }
+    }
+                            }
+                        
+                    
